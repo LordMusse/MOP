@@ -66,6 +66,15 @@
 #define GPIOK_START  ((GPIOJ_END)+1)
 #define GPIOK_END    ((GPIOK_START)+(GPIO_PORT_SIZE)-1)
 
+#define CRC_START  ((GPIOK_END)+(GPIO_PORT_SIZE)+1)
+#define CRC_END    ((CRC_START)+(GPIO_PORT_SIZE)-1)
+
+#define RCC_START  ((CRC_END)+(GPIO_PORT_SIZE)+1)
+#define RCC_END    ((RCC_START)+(GPIO_PORT_SIZE)-1)
+
+#define Flash_interface_START  ((RCC_END)+1)
+#define Flash_interface_END    ((Flash_interface_START)+(GPIO_PORT_SIZE)-1)
+
 //in linking
 extern unsigned int _etext;
 extern unsigned int _sdata;
@@ -299,7 +308,8 @@ void startup (void)
 void app_init(void)
 {
 	* ( (unsigned long *) GPIOH_START) = 0x00005555;
-	*((unsigned long *) 0x40023830) = 0x18;
+	/* starta klockor port D och E | 18 = 10 + 8 | 10 = 16 bit 4 (E femte bokstav) | 8 = bit 3  ( D är fjärde bokstav | RCC is peripheral clock register*/	
+	*((unsigned long *) RCC_START+0x30) = 0x18;
 }
 void Reset_Handler (void)
 {
