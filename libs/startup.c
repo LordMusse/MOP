@@ -299,8 +299,8 @@ void startup (void)
 void app_init(void)
 {
 	* ( (unsigned long *) GPIOH_START) = 0x00005555;
+	*((unsigned long *) 0x40023830) = 0x18;
 }
-
 void Reset_Handler (void)
 {
 	startup();
