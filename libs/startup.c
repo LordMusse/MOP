@@ -75,6 +75,38 @@
 #define Flash_interface_START  ((RCC_END)+1)
 #define Flash_interface_END    ((Flash_interface_START)+(GPIO_PORT_SIZE)-1)
 
+//Input/Output
+
+#define GPIOA_IDR_LOW (GPIOA_START + 0x10)
+#define GPIOA_IDR_HIGH (GPIOA_START + 0x11)
+
+#define GPIOA_ODR_LOW (GPIOA_START + 0x14)
+#define GPIOA_ODR_HIGH (GPIOA_START + 0x15)
+
+#define GPIOB_IDR_LOW (GPIOB_START + 0x10)
+#define GPIOB_IDR_HIGH (GPIOB_START + 0x11)
+
+#define GPIOB_ODR_LOW (GPIOB_START + 0x14)
+#define GPIOB_ODR_HIGH (GPIOB_START + 0x15)
+
+#define GPIOC_IDR_LOW (GPIOC_START + 0x10)
+#define GPIOC_IDR_HIGH (GPIOC_START + 0x11)
+
+#define GPIOC_ODR_LOW (GPIOC_START + 0x14)
+#define GPIOC_ODR_HIGH (GPIOC_START + 0x15)
+
+#define GPIOD_IDR_LOW (GPIOD_START + 0x10)
+#define GPIOD_IDR_HIGH (GPIOD_START + 0x11)
+
+#define GPIOD_ODR_LOW (GPIOD_START + 0x14)
+#define GPIOD_ODR_HIGH (GPIOD_START + 0x15)
+
+#define GPIOE_IDR_LOW (GPIOE_START + 0x10)
+#define GPIOE_IDR_HIGH (GPIOE_START + 0x11)
+
+#define GPIOE_ODR_LOW (GPIOE_START + 0x14)
+#define GPIOE_ODR_HIGH (GPIOE_START + 0x15)
+
 //in linking
 extern unsigned int _etext;
 extern unsigned int _sdata;
@@ -307,9 +339,17 @@ void startup (void)
 
 void app_init(void)
 {
-	* ( (unsigned long *) GPIOH_START) = 0x00005555;
-	/* starta klockor port D och E | 18 = 10 + 8 | 10 = 16 bit 4 (E femte bokstav) | 8 = bit 3  ( D är fjärde bokstav | RCC is peripheral clock register*/	
-	*((unsigned long *) RCC_START+0x30) = 0x18;
+	//reset the bits we want to use to 0
+	* ( (unsigned long *) GPIOD_START) &= 0x0000FFFF;
+	* ( (unsigned long *) GPIOD_START + 0x4) &= 0xFF00FFFF;
+	* ( (unsigned long *) GPIOD_START + 0x8) &= 0x0000FFFF;
+	
+	//Set mode to write for bit 15-12 and read for bit 11-8
+	* ( (unsigned long *) GPIOD_START) &= 0x55000000;
+	//Set Type for bit 15-8 to Push-Pull
+	* ( (unsigned long *) GPIOD_START + 0x4) &= 0xFFFF00FF;
+	//Set PullUp-PullDown-Register for 15-8 to pull down
+	* ( (unsigned long *) GPIOD_START + 0x8) &= 0xAAAAFFFF;
 }
 void Reset_Handler (void)
 {
