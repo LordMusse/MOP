@@ -4,7 +4,9 @@ int main(void){
     unsigned char c;
     app_init();
     while(1){
-        c = ((unsigned char) *(( unsigned short *) (GPIOE_START+0x10)));
-        * ((unsigned char *) (GPIOD_START+0x14));
+	//take input and store it in variable
+	unsigned char keyboard_input = keyb();
+	//output the content of the variable to the 7-segment-display
+    	output_7_segment(keyboard_input);
     }
 }
