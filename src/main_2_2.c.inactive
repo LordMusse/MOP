@@ -1,0 +1,13 @@
+#include "defines.h"
+
+int main(void){    
+	long unsigned int *bargraph = GPIOE_ODR_LOW;
+	app_init();
+	while(1){
+		*bargraph = 0x0;
+		delay_milli(500);
+		*bargraph = 0xFF;
+		delay_milli(500);
+    	}
+	return 0;
+}

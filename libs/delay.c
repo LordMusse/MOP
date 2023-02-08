@@ -25,3 +25,16 @@ void delay_micro(unsigned int us)
 		us--;
 	}
 }
+
+void delay_milli(unsigned int ms)
+{
+#ifdef SIMULATOR
+	ms = ms / 1000;
+	ms++;
+#endif
+	while( ms > 0 )
+	{
+		delay_micro(1000);
+		ms--;
+	}
+}
