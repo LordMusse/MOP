@@ -66,6 +66,47 @@
 #define GPIOK_START  ((GPIOJ_END)+1)
 #define GPIOK_END    ((GPIOK_START)+(GPIO_PORT_SIZE)-1)
 
+#define CRC_START  ((GPIOK_END)+(GPIO_PORT_SIZE)+1)
+#define CRC_END    ((CRC_START)+(GPIO_PORT_SIZE)-1)
+
+#define RCC_START  ((CRC_END)+(GPIO_PORT_SIZE)+1)
+#define RCC_END    ((RCC_START)+(GPIO_PORT_SIZE)-1)
+
+#define Flash_interface_START  ((RCC_END)+1)
+#define Flash_interface_END    ((Flash_interface_START)+(GPIO_PORT_SIZE)-1)
+
+//Input/Output
+
+#define GPIOA_IDR_LOW (GPIOA_START + 0x10)
+#define GPIOA_IDR_HIGH (GPIOA_START + 0x11)
+
+#define GPIOA_ODR_LOW (GPIOA_START + 0x14)
+#define GPIOA_ODR_HIGH (GPIOA_START + 0x15)
+
+#define GPIOB_IDR_LOW (GPIOB_START + 0x10)
+#define GPIOB_IDR_HIGH (GPIOB_START + 0x11)
+
+#define GPIOB_ODR_LOW (GPIOB_START + 0x14)
+#define GPIOB_ODR_HIGH (GPIOB_START + 0x15)
+
+#define GPIOC_IDR_LOW (GPIOC_START + 0x10)
+#define GPIOC_IDR_HIGH (GPIOC_START + 0x11)
+
+#define GPIOC_ODR_LOW (GPIOC_START + 0x14)
+#define GPIOC_ODR_HIGH (GPIOC_START + 0x15)
+
+#define GPIOD_IDR_LOW (GPIOD_START + 0x10)
+#define GPIOD_IDR_HIGH (GPIOD_START + 0x11)
+
+#define GPIOD_ODR_LOW (GPIOD_START + 0x14)
+#define GPIOD_ODR_HIGH (GPIOD_START + 0x15)
+
+#define GPIOE_IDR_LOW (GPIOE_START + 0x10)
+#define GPIOE_IDR_HIGH (GPIOE_START + 0x11)
+
+#define GPIOE_ODR_LOW (GPIOE_START + 0x14)
+#define GPIOE_ODR_HIGH (GPIOE_START + 0x15)
+
 //in linking
 extern unsigned int _etext;
 extern unsigned int _sdata;

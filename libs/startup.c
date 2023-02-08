@@ -325,8 +325,17 @@ void Default_Handler(void)
 {
 	while(1);
 };
+//stack and stack-guard initialize
+unsigned long __stack_chk_guard;
+void __stack_chk_guard_setup(void)
+{
+     __stack_chk_guard = 0xBAAAAAAD;//provide some magic numbers
+}
 
-
+void __stack_chk_fail(void)                         
+{
+ /* Error message */                                 
+}// will be called when guard variable is corrupted 
 __attribute__((naked))
 __attribute__((section(".start_section")))
 void startup (void)
@@ -339,6 +348,8 @@ void startup (void)
 
 void app_init(void)
 {
+	__stack_chk_guard_setup();
+
 	//reset the bits we want to use to 0
 	* ( (unsigned long *) GPIOD_START) &= 0x0000FFFF;
 	* ( (unsigned long *) GPIOD_START + 0x4) &= 0xFF00FFFF;

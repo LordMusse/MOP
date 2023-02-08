@@ -1,1 +1,1 @@
-void keyb (void);
+unsigned char keyb (void);
