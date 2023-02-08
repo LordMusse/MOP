@@ -1,6 +1,4 @@
-#include "startup.h"
-#include "main.h"
-#include "keyboard.h"
+#include "defines.h"
 
 #define AMOUNT_OF_ROWS 4
 #define AMOUNT_OF_COLUMNS 4

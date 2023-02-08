@@ -1,5 +1,4 @@
-#include "main.h"
-#include "startup.h"
+#include "defines.h"
 
 int main(void){
     unsigned char c;

@@ -1,6 +1,5 @@
-#define STK_CTRL ((volatile unsigned int *)(0xE000E010))  
-#define STK_LOAD ((volatile unsigned int *)(0xE000E014))  
-#define STK_VAL  ((volatile unsigned int *)(0xE000E018))  
+#include "defines.h"
+
 void delay_250ns( void )
 {
 	/* SystemCoreClock = 168000000 */
