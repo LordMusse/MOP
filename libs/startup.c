@@ -223,7 +223,17 @@ void startup (void)
 
 void app_init(void)
 {
+	//to avoid error in compilator (who thinks stack overflow is dangerous, pfff)
 	__stack_chk_guard_setup();
+
+	/* Starta klockor port D och E.
+	 * RCC: Reset and Clock Control.
+	 * Offset 0x30 är AHB1ENR, peripheral clock register
+	 * 0x18=[00010010]*/
+	*((unsigned long *) RCC_START + 0x30) = 0x18;
+
+	//set read/write-speed of inport to "medium"(01) for each bit
+	* ( (volatile unsigned int *) GPIOD_START + 0x8) = 0x55555555;
 
 	//reset the bits we want to use to 0
 	* ( (unsigned long *) GPIOD_START) &= 0x0000FFFF;
