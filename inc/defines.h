@@ -73,6 +73,32 @@
 #define Flash_interface_END    ((Flash_interface_START)+(GPIO_PORT_SIZE)-1)
 
 //Input/Output
+typedef volatile struct {
+unsigned int 		moder;
+unsigned short int	otyper;   
+unsigned short int 	reserved0; 
+unsigned int        	ospeedr;  
+unsigned int        	pupdr; 
+unsigned char       	idr_low;
+unsigned char       	idr_high;
+unsigned short int  	Reserved1;
+unsigned char       	odr_low;
+unsigned char       	odr_high;
+unsigned short int  	reserved2;
+unsigned int        	bsrr;     
+unsigned short int  	lckr; 
+unsigned short      	reserved3;
+unsigned int        	afrl; 
+unsigned int        	afrh;
+} GPIO, *PGPIO;
+
+#define GPIO_D (*((volatile PGPIO) GPIOD_START))
+#define GPIO_E (*((volatile PGPIO) GPIOE_START))
+
+//GPIO_E.moder =  0x55555555;
+//GPIO_E.otyper =  0x00000000; 
+//GPIO_D.moder    =  0x55550000; 
+//GPIO_D.pupdr |= 0x00005555;
 
 #define GPIOA_IDR_LOW (GPIOA_START + 0x10)
 #define GPIOA_IDR_HIGH (GPIOA_START + 0x11)
@@ -108,6 +134,11 @@
 #define STK_CTRL ((volatile unsigned int *)(0xE000E010))  
 #define STK_LOAD ((volatile unsigned int *)(0xE000E014))  
 #define STK_VAL  ((volatile unsigned int *)(0xE000E018)) 
+
+#define B_E 0x40
+#define B_SELECT 0x4
+#define B_RW 0x2
+#define B_RS 0x1
 
 //in linking
 extern unsigned int _etext;
@@ -257,24 +288,8 @@ void ascii_init (void);
         
 //To "move" to a place you want to write or read from               
 void ascii_gotoxy (unsigned char x, unsigned char y);
-        
-/* To manipulate the control-bit */
-void ascii_control_bit_set (unsigned char x);
-
-void ascii_control_bit_clear (unsigned char x);
   
 /* These are to write charachter and commands */
 void ascii_write_character (unsigned char character); 
         
-void ascii_write_command (unsigned char data);   
-        
-/*To read status and data*/
-unsigned char ascii_read_status (void);
-        
-unsigned char ascii_read_data (void);
-
-/*Controller-functions*/
-void ascii_write_controller (unsigned char byte);
-
-unsigned char ascii_read_controller (void);
-
+void ascii_write_command (unsigned char command);   
