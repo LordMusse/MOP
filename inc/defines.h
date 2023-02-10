@@ -140,6 +140,13 @@ unsigned int        	afrh;
 #define B_RW 0x2
 #define B_RS 0x1
 
+//Typedefs
+typedef char int8;
+typedef short int int16;
+typedef long int int32;
+typedef unsigned char uint8;
+typedef unsigned short int uint16;
+typedef unsigned long int uint32;
 //in linking
 extern unsigned int _etext;
 extern unsigned int _sdata;
@@ -269,17 +276,17 @@ void startup (void);
 void app_init(void);
 
 //keypad
-unsigned char keyb (void);
+uint8 keyb (void);
 
 //7 segment display
-void output_7_segment (unsigned char output);
+void output_7_segment (uint8 output);
 
 /*Delay-functions*/
 void delay_250ns (void);
 
-void delay_micro (unsigned int us);
+void delay_micro (uint32 us);
 
-void delay_milli (unsigned int ms);
+void delay_milli (uint32 ms);
 
 /*Ascii-display functions*/
 
@@ -287,9 +294,9 @@ void delay_milli (unsigned int ms);
 void ascii_init (void);
         
 //To "move" to a place you want to write or read from               
-void ascii_gotoxy (unsigned char x, unsigned char y);
+void ascii_gotoxy (uint8 x,uint8 y);
   
 /* These are to write charachter and commands */
-void ascii_write_character (unsigned char character); 
+void ascii_write_character (uint8 character); 
         
-void ascii_write_command (unsigned char command);   
+void ascii_write_command (uint8 command);   

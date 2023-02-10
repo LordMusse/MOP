@@ -16,7 +16,7 @@ void ascii_init (void)
 }
 
 //To "move" to a place you want to write or read from
-void ascii_goto_coordinate (unsigned char row, unsigned char column)
+void ascii_goto_coordinate (uint8 row, uint8 column)
 {
 	address = row -1;
 	if (column == 2)
@@ -27,7 +27,7 @@ void ascii_goto_coordinate (unsigned char row, unsigned char column)
 }
 
 /*main-functions*/
-void ascii_write_character (unsigned char character)
+void ascii_write_character (uint8 character)
 {
 
 	while( ( ascii_read_status & 0x80 ) == 0x80);
@@ -36,7 +36,7 @@ void ascii_write_character (unsigned char character)
 	delay_micro(45); //?
 }
 
-void ascii_write_command (unsigned char command)
+void ascii_write_command (uint8 command)
 {
 	while( ( ascii_read_status & 0x80 ) == 0x80);
 	delay_micro(8);
@@ -47,13 +47,13 @@ void ascii_write_command (unsigned char command)
 /*sub-functions */
 
 /* To manipulate the control-bit */
-void ascii_control_bit_set (unsigned char bits)
+void ascii_control_bit_set (uint8 bits)
 {
 	/*for instance if bit 4, 5 and 7 should be set to 1
 	 * [xxxx xxxx] | [1011 0000] = [1x11 xxxx]*/
 	GPIO_E.odr_low |= bits;
 }
-void ascii_control_bit_clear (unsigned char bits)
+void ascii_control_bit_clear (uint8 bits)
 {
 	/*for instance if bit 1,2 och 3 should be cleared [0000 0111]
 	 * [xxxx xxxx] & ~(inverse)[0000 0111]
@@ -62,7 +62,7 @@ void ascii_control_bit_clear (unsigned char bits)
 }
 
 /* These are to write data */
-void ascii_write_data (unsigned char data)
+void ascii_write_data (uint8 data)
 {
 	ascii_control_bit_set(B_RS);
 	ascii_control_bit_clear(B_RW);
@@ -70,39 +70,39 @@ void ascii_write_data (unsigned char data)
 }
 
 /*these are to read data*/
-unsigned char ascii_read_status (void)
+uint8 ascii_read_status (void)
 {
-	* ((short int *) (&GPIO_E.moder + 2)) = (short int) 0x0000;
+	* ((uint16 *) (&GPIO_E.moder + 2)) = (uint16) 0x0000;
 	ascii_control_bit_clear(B_RS);
 	ascii_control_bit_set(B_RW);
-	unsigned char status = ascii_read_controller();
-	* ((short int *) (&GPIO_E.moder + 2)) = (short int) 0x5555;
+	uint8 status = ascii_read_controller();
+	* ((uint16 *) (&GPIO_E.moder + 2)) = (uint16) 0x5555;
 	return status;
 }
-unsigned char ascii_read_data (void)
+uint8 ascii_read_data (void)
 {
-	* ((short int *) (&GPIO_E.moder + 2)) = (short int) 0x0000;
+	* ((uint16 *) (&GPIO_E.moder + 2)) = (uint16) 0x0000;
 	ascii_control_bit_set(B_RS);
 	delay_250ns(); //mycket mindre egentligen
 	ascii_control_bit_set(B_RW);
 	delay_250ns(); //mycket mindre här med
-	unsigned char data = ascii_read_controller();	
-	* ((short int *) (&GPIO_E.moder + 2)) = (short int) 0x5555;	
+	uint8 data = ascii_read_controller();	
+	* ((uint16 *) (&GPIO_E.moder + 2)) = (uint16) 0x5555;	
 	return data;
 }
 
-unsigned char ascii_read_controller (void)
+uint8 ascii_read_controller (void)
 {
 	ascii_control_bit_set(B_E);
 	delay_250ns();
 	delay_250ns(); //360ns (240?)
-	unsigned char read_result = GPIO_E.idr_high;
+	uint8 read_result = GPIO_E.idr_high;
 	ascii_control_bit_clear(B_E);
 	return read_result;
 }
 
 /*Controller-function*/
-void ascii_write_controller (unsigned char command)
+void ascii_write_controller (uint8 command)
 {
 	/*list of commands*/
 	delay_250ns(); //delay 40

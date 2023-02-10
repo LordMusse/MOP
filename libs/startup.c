@@ -94,105 +94,105 @@ void CRYP_IRQHandler             	(void) __attribute__ ((weak, alias("Default_Ha
 void HASH_RNG_IRQHandler         	(void) __attribute__ ((weak, alias("Default_Handler")));
 void FPU_IRQHandler              	(void) __attribute__ ((weak, alias("Default_Handler")));                          
 
-int vectors[] __attribute__((section(".isr_vector")))   = {
+int32 vectors[] __attribute__((section(".isr_vector")))   = {
 	STACK_START,
-	(int)Reset_Handler,
-	(int)NMI_Handler,
-	(int)HardFault_Handler,
-	(int)MemManage_Handler,
-	(int)BusFault_Handler,
-	(int)UsageFault_Handler,
+	(int32)Reset_Handler,
+	(int32)NMI_Handler,
+	(int32)HardFault_Handler,
+	(int32)MemManage_Handler,
+	(int32)BusFault_Handler,
+	(int32)UsageFault_Handler,
 	0,
 	0,
 	0,
 	0,
-	(int)SVC_Handler,
-	(int)DebugMon_Handler,
+	(int32)SVC_Handler,
+	(int32)DebugMon_Handler,
 	0,
-	(int)PendSV_Handler,
-	(int)SysTick_Handler,
-	(int)WWDG_IRQHandler,
-	(int)PVD_IRQHandler,         
-	(int)TAMP_STAMP_IRQHandler,  
-	(int)RTC_WKUP_IRQHandler,    
-	(int)FLASH_G_IRQ,                      
-	(int)RCC_IRQHandler,         
-	(int)EXTI0_IRQHandler,       
-	(int)EXTI1_IRQHandler,       
-	(int)EXTI2_IRQHandler,       
-	(int)EXTI3_IRQHandler,       
-	(int)EXTI4_IRQHandler,       
-	(int)DMA1_Stream0_IRQHandler,
-	(int)DMA1_Stream1_IRQHandler,
-	(int)DMA1_Stream2_IRQHandler,
-	(int)DMA1_Stream3_IRQHandler,
-	(int)DMA1_Stream4_IRQHandler,
-	(int)DMA1_Stream5_IRQHandler,
-	(int)DMA1_Stream6_IRQHandler,
-	(int)ADC_IRQHandler,         
-	(int)CAN1_TX_IRQHandler,     
-	(int)CAN1_RX0_IRQHandler,    
-	(int)CAN1_RX1_IRQHandler,    
-	(int)CAN1_SCE_IRQHandler,    
-	(int)EXTI9_5_IRQHandler,     
-	(int)TIM1_BRK_TIM9_IRQHandler,
-	(int)TIM1_UP_TIM10_IRQHandler,
-	(int)TIM1_TRG_COM_TIM11_IRQHandler,
-	(int)TIM1_CC_IRQHandler,     
-	(int)TIM2_IRQHandler,        
-	(int)TIM3_IRQHandler,        
-	(int)TIM4_IRQHandler,        
-	(int)I2C1_EV_IRQHandler,     
-	(int)I2C1_ER_IRQHandler,     
-	(int)I2C2_EV_IRQHandler,     
-	(int)I2C2_ER_IRQHandler,     
-	(int)SPI1_IRQHandler,        
-	(int)SPI2_IRQHandler,        
-	(int)USART1_IRQHandler,      
-	(int)USART2_IRQHandler,      
-	(int)USART3_IRQHandler,      
-	(int)EXTI15_10_IRQHandler,   
-	(int)RTC_Alarm_IRQHandler,   
-	(int)OTG_FS_WKUP_IRQHandler, 
-	(int)TIM8_BRK_TIM12_IRQHandler,
-	(int)TIM8_UP_TIM13_IRQHandler,
-	(int)TIM8_TRG_COM_TIM14_IRQHandler,
-	(int)TIM8_CC_IRQHandler,     
-	(int)DMA1_Stream7_IRQHandler,
-	(int)FSMC_IRQHandler,        
-	(int)SDIO_IRQHandler,        
-	(int)TIM5_IRQHandler,        
-	(int)SPI3_IRQHandler,        
-	(int)UART4_IRQHandler,       
-	(int)UART5_IRQHandler,       
-	(int)TIM6_DAC_IRQHandler,    
-	(int)TIM7_IRQHandler,        
-	(int)DMA2_Stream0_IRQHandler,
-	(int)DMA2_Stream1_IRQHandler,
-	(int)DMA2_Stream2_IRQHandler,
-	(int)DMA2_Stream3_IRQHandler,
-	(int)DMA2_Stream4_IRQHandler,
-	(int)ETH_IRQHandler,         
-	(int)ETH_WKUP_IRQHandler,    
-	(int)CAN2_TX_IRQHandler,     
-	(int)CAN2_RX0_IRQHandler,    
-	(int)CAN2_RX1_IRQHandler,    
-	(int)CAN2_SCE_IRQHandler,    
-	(int)OTG_FS_IRQHandler,      
-	(int)DMA2_Stream5_IRQHandler,
-	(int)DMA2_Stream6_IRQHandler,
-	(int)DMA2_Stream7_IRQHandler,
-	(int)USART6_IRQHandler,      
-	(int)I2C3_EV_IRQHandler,     
-	(int)I2C3_ER_IRQHandler,     
-	(int)OTG_HS_EP1_OUT_IRQHandler,
-	(int)OTG_HS_EP1_IN_IRQHandler,
-	(int)OTG_HS_WKUP_IRQHandler, 
-	(int)OTG_HS_IRQHandler,      
-	(int)DCMI_IRQHandler,        
-	(int)CRYP_IRQHandler,        
-	(int)HASH_RNG_IRQHandler,    
-	(int)FPU_IRQHandler,         
+	(int32)PendSV_Handler,
+	(int32)SysTick_Handler,
+	(int32)WWDG_IRQHandler,
+	(int32)PVD_IRQHandler,         
+	(int32)TAMP_STAMP_IRQHandler,  
+	(int32)RTC_WKUP_IRQHandler,    
+	(int32)FLASH_G_IRQ,                      
+	(int32)RCC_IRQHandler,         
+	(int32)EXTI0_IRQHandler,       
+	(int32)EXTI1_IRQHandler,       
+	(int32)EXTI2_IRQHandler,       
+	(int32)EXTI3_IRQHandler,       
+	(int32)EXTI4_IRQHandler,       
+	(int32)DMA1_Stream0_IRQHandler,
+	(int32)DMA1_Stream1_IRQHandler,
+	(int32)DMA1_Stream2_IRQHandler,
+	(int32)DMA1_Stream3_IRQHandler,
+	(int32)DMA1_Stream4_IRQHandler,
+	(int32)DMA1_Stream5_IRQHandler,
+	(int32)DMA1_Stream6_IRQHandler,
+	(int32)ADC_IRQHandler,         
+	(int32)CAN1_TX_IRQHandler,     
+	(int32)CAN1_RX0_IRQHandler,    
+	(int32)CAN1_RX1_IRQHandler,    
+	(int32)CAN1_SCE_IRQHandler,    
+	(int32)EXTI9_5_IRQHandler,     
+	(int32)TIM1_BRK_TIM9_IRQHandler,
+	(int32)TIM1_UP_TIM10_IRQHandler,
+	(int32)TIM1_TRG_COM_TIM11_IRQHandler,
+	(int32)TIM1_CC_IRQHandler,     
+	(int32)TIM2_IRQHandler,        
+	(int32)TIM3_IRQHandler,        
+	(int32)TIM4_IRQHandler,        
+	(int32)I2C1_EV_IRQHandler,     
+	(int32)I2C1_ER_IRQHandler,     
+	(int32)I2C2_EV_IRQHandler,     
+	(int32)I2C2_ER_IRQHandler,     
+	(int32)SPI1_IRQHandler,        
+	(int32)SPI2_IRQHandler,        
+	(int32)USART1_IRQHandler,      
+	(int32)USART2_IRQHandler,      
+	(int32)USART3_IRQHandler,      
+	(int32)EXTI15_10_IRQHandler,   
+	(int32)RTC_Alarm_IRQHandler,   
+	(int32)OTG_FS_WKUP_IRQHandler, 
+	(int32)TIM8_BRK_TIM12_IRQHandler,
+	(int32)TIM8_UP_TIM13_IRQHandler,
+	(int32)TIM8_TRG_COM_TIM14_IRQHandler,
+	(int32)TIM8_CC_IRQHandler,     
+	(int32)DMA1_Stream7_IRQHandler,
+	(int32)FSMC_IRQHandler,        
+	(int32)SDIO_IRQHandler,        
+	(int32)TIM5_IRQHandler,        
+	(int32)SPI3_IRQHandler,        
+	(int32)UART4_IRQHandler,       
+	(int32)UART5_IRQHandler,       
+	(int32)TIM6_DAC_IRQHandler,    
+	(int32)TIM7_IRQHandler,        
+	(int32)DMA2_Stream0_IRQHandler,
+	(int32)DMA2_Stream1_IRQHandler,
+	(int32)DMA2_Stream2_IRQHandler,
+	(int32)DMA2_Stream3_IRQHandler,
+	(int32)DMA2_Stream4_IRQHandler,
+	(int32)ETH_IRQHandler,         
+	(int32)ETH_WKUP_IRQHandler,    
+	(int32)CAN2_TX_IRQHandler,     
+	(int32)CAN2_RX0_IRQHandler,    
+	(int32)CAN2_RX1_IRQHandler,    
+	(int32)CAN2_SCE_IRQHandler,    
+	(int32)OTG_FS_IRQHandler,      
+	(int32)DMA2_Stream5_IRQHandler,
+	(int32)DMA2_Stream6_IRQHandler,
+	(int32)DMA2_Stream7_IRQHandler,
+	(int32)USART6_IRQHandler,      
+	(int32)I2C3_EV_IRQHandler,     
+	(int32)I2C3_ER_IRQHandler,     
+	(int32)OTG_HS_EP1_OUT_IRQHandler,
+	(int32)OTG_HS_EP1_IN_IRQHandler,
+	(int32)OTG_HS_WKUP_IRQHandler, 
+	(int32)OTG_HS_IRQHandler,      
+	(int32)DCMI_IRQHandler,        
+	(int32)CRYP_IRQHandler,        
+	(int32)HASH_RNG_IRQHandler,    
+	(int32)FPU_IRQHandler,         
 };
 
 
@@ -201,7 +201,7 @@ void Default_Handler(void)
 	while(1);
 };
 //stack and stack-guard initialize
-unsigned long __stack_chk_guard;
+uint32 __stack_chk_guard;
 void __stack_chk_guard_setup(void)
 {
      __stack_chk_guard = 0xBAAAAAAD;//provide some magic numbers
@@ -230,22 +230,22 @@ void app_init(void)
 	 * RCC: Reset and Clock Control.
 	 * Offset 0x30 är AHB1ENR, peripheral clock register
 	 * 0x18=[00010010]*/
-	*((unsigned long *) RCC_START + 0x30) = 0x18;
+	*((uint32 *) RCC_START + 0x30) = 0x18;
 
 	//set read/write-speed of inport to "medium"(01) for each bit
-	* ( (volatile unsigned int *) GPIOD_START + 0x8) = 0x55555555;
+	GPIO_D.ospeedr = 0x55555555;
 
 	//reset the bits we want to use to 0
-	* ( (unsigned long *) GPIOD_START) &= 0x0000FFFF;
-	* ( (unsigned long *) GPIOD_START + 0x4) &= 0xFF00FFFF;
-	* ( (unsigned long *) GPIOD_START + 0x8) &= 0x0000FFFF;
+	GPIO_D.moder &= 0x0000FFFF;
+	GPIO_D.otyper &= 0xFF00FFFF;
+	GPIO_D.pupdr &= 0x0000FFFF;
 	
 	//Set mode to write for bit 15-12 and read for bit 11-8
-	* ( (unsigned long *) GPIOD_START) &= 0x55000000;
+	GPIO_D.moder &= 0x55000000;
 	//Set Type for bit 15-8 to Push-Pull
-	* ( (unsigned long *) GPIOD_START + 0x4) &= 0xFFFF00FF;
+	GPIO_D.otyper &= 0xFFFF00FF;
 	//Set PullUp-PullDown-Register for 15-8 to pull down
-	* ( (unsigned long *) GPIOD_START + 0x8) &= 0xAAAAFFFF;
+	GPIO_D.pupdr &= 0xAAAAFFFF;
 }
 void Reset_Handler (void)
 {

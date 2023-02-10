@@ -6,25 +6,25 @@
 void ActivateRow (int row)
 {
 	//Activate bit 4 with offset row 0x10=[00010000]
-	* ( (unsigned char *) GPIOD_ODR_HIGH) &= (0x10<<row);
+	(GPIO_D.odr_high &= (0x10<<row));
 }
 
-unsigned char ReadColumn (void)
+uint8 ReadColumn (void)
 {
 	//Return from Input-register and mask it for bit 0-3. 0x0F=[00001111]
-	return * ( (unsigned char *) GPIOD_IDR_HIGH) & 0x0F;
+	return ((volatile uint8)(GPIO_D.idr_high & 0x0F));
 }
 
-unsigned char keyValue (unsigned char row, unsigned char column)
+uint8 keyValue (uint8 row, volatile uint8 column)
 {
 	//what the keypad represents
-	unsigned char keyboard_input[4][4] = {	{1,2,3,10},
+	uint8 keyboard_input[4][4] = {	{1,2,3,10},
 		      				{4,5,6,11},
 						{7,8,9,12},
 						{14,0,15,13}
 						};
 	//base return-value if nothing was pressed or weird stuff happens
-	unsigned char base_value = 0xFF;
+	uint8 base_value = 0xFF;
 	//if column is 0 return 0xFF as a base-value
 	if (column != 0x0)
 	{
@@ -53,12 +53,12 @@ unsigned char keyValue (unsigned char row, unsigned char column)
 	return base_value;
 }
 
-unsigned char keyb (void)
+uint8 keyb (void)
 {
-
-	for (unsigned char row = 0; row < AMOUNT_OF_ROWS; row++) {
+	volatile uint8 column;
+	for (uint8 row = 0; row < AMOUNT_OF_ROWS; row++) {
 		ActivateRow(row);
-		unsigned char column = ReadColumn();
+		column = ReadColumn();
 		return keyValue(row,column);
 	}
 }
