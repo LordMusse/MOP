@@ -95,41 +95,6 @@ unsigned int        	afrh;
 #define GPIO_D (*((volatile PGPIO) GPIOD_START))
 #define GPIO_E (*((volatile PGPIO) GPIOE_START))
 
-//GPIO_E.moder =  0x55555555;
-//GPIO_E.otyper =  0x00000000; 
-//GPIO_D.moder    =  0x55550000; 
-//GPIO_D.pupdr |= 0x00005555;
-
-#define GPIOA_IDR_LOW (GPIOA_START + 0x10)
-#define GPIOA_IDR_HIGH (GPIOA_START + 0x11)
-
-#define GPIOA_ODR_LOW (GPIOA_START + 0x14)
-#define GPIOA_ODR_HIGH (GPIOA_START + 0x15)
-
-#define GPIOB_IDR_LOW (GPIOB_START + 0x10)
-#define GPIOB_IDR_HIGH (GPIOB_START + 0x11)
-
-#define GPIOB_ODR_LOW (GPIOB_START + 0x14)
-#define GPIOB_ODR_HIGH (GPIOB_START + 0x15)
-
-#define GPIOC_IDR_LOW (GPIOC_START + 0x10)
-#define GPIOC_IDR_HIGH (GPIOC_START + 0x11)
-
-#define GPIOC_ODR_LOW (GPIOC_START + 0x14)
-#define GPIOC_ODR_HIGH (GPIOC_START + 0x15)
-
-#define GPIOD_IDR_LOW (GPIOD_START + 0x10)
-#define GPIOD_IDR_HIGH (GPIOD_START + 0x11)
-
-#define GPIOD_ODR_LOW (GPIOD_START + 0x14)
-#define GPIOD_ODR_HIGH (GPIOD_START + 0x15)
-
-#define GPIOE_IDR_LOW (GPIOE_START + 0x10)
-#define GPIOE_IDR_HIGH (GPIOE_START + 0x11)
-
-#define GPIOE_ODR_LOW (GPIOE_START + 0x14)
-#define GPIOE_ODR_HIGH (GPIOE_START + 0x15)
-
 //Controls
 #define STK_CTRL ((volatile unsigned int *)(0xE000E010))  
 #define STK_LOAD ((volatile unsigned int *)(0xE000E014))  
