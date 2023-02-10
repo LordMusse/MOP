@@ -1,15 +1,29 @@
 #include "defines.h"
+
+//prototypes
+void ascii_init(void);
+void ascii_goto_coordinate(uint8 row, uint8 column);
+void ascii_write_character(uint8 character);
+void ascii_write_command(uint8 command);
+void ascii_control_bit_set(uint8 bits);
+void ascii_control_bit_clear(uint8 bits);
+void ascii_write_data(uint8 data);
+uint8 ascii_read_status(void);
+uint8 ascii_read_data(void);
+uint8 ascii_read_controller(void);
+void ascii_write_controller(uint8 command);
+
 void ascii_init (void)
 {	
-	while( ( ascii_read_status & 0x80 ) == 0x80);
+	while( ( ascii_read_status() & 0x80 ) == 0x80);
 	delay_micro(8);
 	ascii_write_command(0x38);
 	delay_micro(39);
-	while( ( ascii_read_status & 0x80 ) == 0x80);
+	while( ( ascii_read_status() & 0x80 ) == 0x80);
 	delay_micro(8);
 	ascii_write_command(0xE0);
 	delay_micro(39);
-	while( ( ascii_read_status & 0x80 ) == 0x80);
+	while( ( ascii_read_status() & 0x80 ) == 0x80);
 	delay_micro(8);
 	ascii_write_command(0x4);
 	delay_micro(39);
@@ -18,7 +32,7 @@ void ascii_init (void)
 //To "move" to a place you want to write or read from
 void ascii_goto_coordinate (uint8 row, uint8 column)
 {
-	address = row -1;
+	uint8 address = row -1;
 	if (column == 2)
 	{
 		address = address + 0x40;
@@ -30,7 +44,7 @@ void ascii_goto_coordinate (uint8 row, uint8 column)
 void ascii_write_character (uint8 character)
 {
 
-	while( ( ascii_read_status & 0x80 ) == 0x80);
+	while( ( ascii_read_status() & 0x80 ) == 0x80);
 	delay_micro(8);
 	ascii_write_data(character);
 	delay_micro(45); //?
@@ -38,7 +52,7 @@ void ascii_write_character (uint8 character)
 
 void ascii_write_command (uint8 command)
 {
-	while( ( ascii_read_status & 0x80 ) == 0x80);
+	while( ( ascii_read_status() & 0x80 ) == 0x80);
 	delay_micro(8);
 	ascii_write_controller(command);
 	delay_milli(2);

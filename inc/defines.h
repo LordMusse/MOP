@@ -259,7 +259,7 @@ void delay_milli (uint32 ms);
 void ascii_init (void);
         
 //To "move" to a place you want to write or read from               
-void ascii_gotoxy (uint8 x,uint8 y);
+void ascii_goto_coordinate (uint8 row,uint8 column);
   
 /* These are to write charachter and commands */
 void ascii_write_character (uint8 character); 

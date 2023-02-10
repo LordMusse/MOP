@@ -8,12 +8,12 @@ int main(void){
 	app_init();
 	ascii_init();
 	
-	ascii_gotoxy(1,1);
+	ascii_goto_coordinate(1,1);
 	string = test1;
 	while ( *string )
 		ascii_write_character( *string++ );
 	
-	ascii_gotoxy(1,2);
+	ascii_goto_coordinate(1,2);
 	string = test2;
 	while ( *string )
 		ascii_write_character( *string++ );
